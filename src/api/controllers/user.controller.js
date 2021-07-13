@@ -16,6 +16,7 @@ export const signUp = async (req, res, next) => {
     const result = await userService.signUp(body);
     return res.status(201).send(result);
   } catch (error) {
+    error.statusCode = 409;
     next(error);
   }
 };
