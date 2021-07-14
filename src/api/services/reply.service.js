@@ -22,9 +22,27 @@ export const replyService = {
           {
             model: db.question,
           },
+          {
+            model: db.answer,
+            include: [{ model: db.question }],
+          },
         ],
       });
       return reply;
+    } catch (error) {
+      return error;
+    }
+  },
+  async deleteReply(params) {
+    try {
+      await db.reply.destroy({
+        where: {
+          ID: params.ID,
+        },
+      });
+      return {
+        deleted: true,
+      };
     } catch (error) {
       return error;
     }

@@ -6,10 +6,12 @@ import {
   addReply,
   likeAnswer,
   deleteAnswer,
+  deleteReply,
 } from '../api/controllers/answer.controller.js';
 
 const answerRouter = Router();
 
+// POST -> create new answer
 answerRouter.post(
   '/an',
   body('description').isString().withMessage('Description is required'),
@@ -18,10 +20,12 @@ answerRouter.post(
   newAnswer
 );
 
+// GET -> accept a  answer
 answerRouter.get('/ac', acceptAnswer);
 
+// POST -> add reply
 answerRouter.post(
-  '/ar',
+  '/r/a',
   body('reply').isString().withMessage('reply is required'),
   body('answerID').isString().withMessage('answerID is required'),
   body('userID').isString().withMessage('User ID is required'),
@@ -29,8 +33,19 @@ answerRouter.post(
   addReply
 );
 
+// DELETE -> reply to an answer
+answerRouter.delete(
+  '/r/d',
+  body('ID').isString().withMessage('ID is required'),
+  deleteReply
+);
+// GET -> Like a answer
 answerRouter.get('/al', likeAnswer);
-
-answerRouter.delete('/ad', deleteAnswer);
+// DELETE -> answer
+answerRouter.delete(
+  '/ad',
+  body('ID').isNumeric().withMessage('ID is required'),
+  deleteAnswer
+);
 
 export default answerRouter;

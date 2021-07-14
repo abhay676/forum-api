@@ -7,7 +7,8 @@ import {
   getQuestionDetail,
   addReply,
   likeQuestion,
-  deleteQuestion
+  deleteQuestion,
+  deleteReply,
 } from '../api/controllers/question.controller.js';
 
 const questionRouter = Router();
@@ -26,16 +27,27 @@ questionRouter.get('/ql', questions);
 questionRouter.get('/qd', getQuestionDetail);
 
 questionRouter.post(
-  '/qr',
+  '/r/q',
   body('reply').isString().withMessage('reply is required'),
   body('questionID').isString().withMessage('questionID is required'),
-  body('userID').isString().withMessage("User ID is required"),
+  body('userID').isString().withMessage('User ID is required'),
   body('type').isNumeric().withMessage('type is required'),
   addReply
 );
 
-questionRouter.get('/ql', likeQuestion)
+// DELETE -> reply to an answer
+questionRouter.delete(
+  '/r/d',
+  body('ID').isString().withMessage('ID is required'),
+  deleteReply
+);
 
-questionRouter.delete('/qd', deleteQuestion)
+questionRouter.get('/ql', likeQuestion);
+
+questionRouter.delete(
+  '/qd',
+  body('ID').isNumeric().withMessage('ID is required'),
+  deleteQuestion
+);
 
 export default questionRouter;

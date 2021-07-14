@@ -11,6 +11,8 @@ import {
   QUESTION_FETCHED,
   NEW_REPLY_ERROR,
   NEW_REPLY,
+  DELETE_REPLY,
+  DELETE_REPLY_ERROR,
 } from '../utils/Messages.js';
 export const newQuestion = async (req, res, next) => {
   try {
@@ -58,6 +60,7 @@ export const addReply = async (req, res, next) => {
     const reply = await replyService.getReplyDetail(result.ID);
     // generate mail HTML
     const HTML = await emailTemplate('reply.ejs', {
+      type: 'question',
       shareURL: reply.question.shareURL,
       userName: reply.user.name,
       trimText:
@@ -87,6 +90,19 @@ export const deleteQuestion = async (req, res, next) => {
     const ID = req.query.ID;
     const result = await questionService.deleteQuestion(ID);
     return sendResponse(res, 200, 'success', result, null);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteReply = async (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 400, DELETE_REPLY_ERROR, null, errors.array());
+    }
+    const result = await replyService.deleteReply(req.body);
+    return sendResponse(res, 200, DELETE_REPLY, result, null);
   } catch (error) {
     next(error);
   }

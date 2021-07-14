@@ -18,7 +18,7 @@ export const NEW_ANSWER = 'answer created successfully';
 export const NEW_ANSWER_ERROR = 'error occur, while creating a answer';
 export const ANSWER_ACCEPTED = 'answer accepted successfully';
 export const ANSWER_ACCEPTED_ERROR = 'error occur, while accepting a answer';
-export const ANSWER_DELETED = 'answer deleted successfully'
+export const ANSWER_DELETED = 'answer deleted successfully';
 // ----------------------------
 //! Transaction messages
 // -----------------------------
@@ -26,6 +26,8 @@ export const LIKE = 'transaction recorded successfully';
 export const LIKE_ERROR = 'error occur, while recording the transaction';
 export const NEW_REPLY = 'reply created successfully';
 export const NEW_REPLY_ERROR = 'error occur, while creating a reply';
+export const DELETE_REPLY = 'reply deleted successfully';
+export const DELETE_REPLY_ERROR = 'error occur, while deleting the reply';
 // ----------------------------
 //! Channel messages
 // -----------------------------
