@@ -25,11 +25,19 @@ export const signUp = async (req, res, next) => {
 
 export const user = async (req, res, next) => {
   try {
-    const ID = req.query.ID
-    const result = await userService.userDetails(ID)
-    return sendResponse(res, 200, USER, result, null)
+    const ID = req.query.ID;
+    const result = await userService.userDetails(ID);
+    return sendResponse(res, 200, USER, result, null);
   } catch (error) {
-    error.statusCode = 404
-    next(error)
+    error.statusCode = 404;
+    next(error);
   }
-}
+};
+export const userDashboard = async (req, res, next) => {
+  try {
+    const result = await userService.dashboard();
+    return sendResponse(res, 200, 'success', result, null);
+  } catch (error) {
+    next(error);
+  }
+};
