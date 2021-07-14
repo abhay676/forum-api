@@ -18,6 +18,7 @@ export const NEW_ANSWER = 'answer created successfully';
 export const NEW_ANSWER_ERROR = 'error occur, while creating a answer';
 export const ANSWER_ACCEPTED = 'answer accepted successfully';
 export const ANSWER_ACCEPTED_ERROR = 'error occur, while accepting a answer';
+export const ANSWER_DELETED = 'answer deleted successfully'
 // ----------------------------
 //! Transaction messages
 // -----------------------------

@@ -9,6 +9,7 @@ import {
   NEW_REPLY,
   NEW_REPLY_ERROR,
   LIKE,
+  ANSWER_DELETED,
 } from '../utils/Messages.js';
 export const newAnswer = async (req, res, next) => {
   try {
@@ -52,6 +53,17 @@ export const likeAnswer = async (req, res, next) => {
     const result = await answerService.likeAnswer(ID);
     return sendResponse(res, 200, LIKE, result, null);
   } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteAnswer = async (req, res, next) => {
+  try {
+    const ID = req.query.ID;
+    const result = await answerService.deleteAnswer(ID);
+    return sendResponse(res, 200, ANSWER_DELETED, result, null);
+  } catch (error) {
+    error.statusCode = 400;
     next(error);
   }
 };

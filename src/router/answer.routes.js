@@ -5,6 +5,7 @@ import {
   acceptAnswer,
   addReply,
   likeAnswer,
+  deleteAnswer,
 } from '../api/controllers/answer.controller.js';
 
 const answerRouter = Router();
@@ -29,5 +30,7 @@ answerRouter.post(
 );
 
 answerRouter.get('/al', likeAnswer);
+
+answerRouter.delete('/ad', deleteAnswer);
 
 export default answerRouter;

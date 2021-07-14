@@ -1,5 +1,4 @@
 import db from '../../db/connection.js';
-import { likeAnswer } from '../controllers/answer.controller.js';
 
 export const answerService = {
   async addAnswer(data) {
@@ -46,6 +45,20 @@ export const answerService = {
       return answer;
     } catch (error) {
       console.log(error);
+      return error;
+    }
+  },
+  async deleteAnswer(ID) {
+    try {
+      await db.answer.destroy({
+        where: {
+          ID,
+        },
+      });
+      return {
+        deleted: true,
+      };
+    } catch (error) {
       return error;
     }
   },
