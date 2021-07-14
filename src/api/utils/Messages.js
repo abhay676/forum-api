@@ -3,13 +3,14 @@
 // -----------------------------
 export const USER_CREATED = 'user created successfully';
 export const USER_CREATED_ERROR = 'error occur, while creating a user';
+export const USER = 'user fetched successfully';
 // ----------------------------
 //! Questions messages
 // -----------------------------
-export const QUESTIONS = 'all questions fetched successfully'
+export const QUESTIONS = 'all questions fetched successfully';
 export const NEW_QUESTION = 'question created successfully';
 export const NEW_QUESTION_ERROR = 'error occur, while creating a question';
-export const QUESTION_FETCHED = 'question fetched successfully'
+export const QUESTION_FETCHED = 'question fetched successfully';
 // ----------------------------
 //! Answer messages
 // -----------------------------
@@ -29,9 +30,9 @@ export const NEW_REPLY_ERROR = 'error occur, while creating a reply';
 // -----------------------------
 export const NEW_CHANNEL = 'channel created successfully';
 export const NEW_CHANNEL_ERROR = 'error occur, while creating a channel';
-export const CHANNEL_DETAILS = 'channel fetch successfully'
+export const CHANNEL_DETAILS = 'channel fetch successfully';
 // ----------------------------
 //! Upload messages
 // -----------------------------
-export const UPLOAD = 'image uploaded successfully'
-export const UPLOAD_ERROR='error occur, while uploading'
+export const UPLOAD = 'image uploaded successfully';
+export const UPLOAD_ERROR = 'error occur, while uploading';
