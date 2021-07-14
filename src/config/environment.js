@@ -13,4 +13,9 @@ export const environment = {
   MAIL_SERVICE: process.env.MAIL_SERVICE,
   MAIL_USER: process.env.MAIL_USER,
   MAIL_PWD: process.env.MAIL_PWD,
+  ACTIVE: '1',
+  INACTIVE: '0',
+  DELETED: '2',
+  TYPE_QUESTION: '0',
+  TYPE_ANSWER: '1'
 };
