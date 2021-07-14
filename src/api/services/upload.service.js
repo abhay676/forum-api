@@ -14,7 +14,11 @@ export const uploadService = {
         file,
         fileName,
       });
-      return upload;
+      return {
+        name: upload.name,
+        url: upload.url,
+        thumbnailUrl: upload.thumbnailUrl
+      };
     } catch (error) {
       throw new CustomError(404, error.message, error.message, 'THIRD_PARTY_ERROR');
     }
