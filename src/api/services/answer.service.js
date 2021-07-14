@@ -28,7 +28,7 @@ export const answerService = {
 
   async likeAnswer(ID) {
     try {
-      const result = await db.answer.increment(
+      await db.answer.increment(
         {
           likes: +1,
         },
@@ -38,7 +38,12 @@ export const answerService = {
           },
         }
       );
-      return result;
+      const answer = await db.answer.findOne({
+        where: {
+          ID,
+        },
+      });
+      return answer;
     } catch (error) {
       console.log(error);
       return error;
