@@ -17,13 +17,7 @@ export const userService = {
         where: {
           ID,
         },
-        include: [
-          { model: db.question },
-          {
-            model: db.reply,
-            include: [{ model: db.question }, { model: db.answer }],
-          },
-        ],
+        include: [{ model: db.question }, { model: db.answer }],
       });
       return result;
     } catch (error) {
