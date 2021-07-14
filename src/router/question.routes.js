@@ -7,6 +7,7 @@ import {
   getQuestionDetail,
   addReply,
   likeQuestion,
+  deleteQuestion
 } from '../api/controllers/question.controller.js';
 
 const questionRouter = Router();
@@ -20,7 +21,7 @@ questionRouter.post(
   newQuestion
 );
 
-questionRouter.get('/q', questions);
+questionRouter.get('/ql', questions);
 
 questionRouter.get('/qd', getQuestionDetail);
 
@@ -34,5 +35,7 @@ questionRouter.post(
 );
 
 questionRouter.get('/ql', likeQuestion)
+
+questionRouter.delete('/qd', deleteQuestion)
 
 export default questionRouter;

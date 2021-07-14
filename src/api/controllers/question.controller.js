@@ -81,3 +81,13 @@ export const likeQuestion = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteQuestion = async (req, res, next) => {
+  try {
+    const ID = req.query.ID;
+    const result = await questionService.deleteQuestion(ID);
+    return sendResponse(res, 200, 'success', result, null);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -74,4 +74,19 @@ export const questionService = {
       return error;
     }
   },
+
+  async deleteQuestion(ID) {
+    try {
+      const result = await db.question.destroy({
+        where: {
+          ID,
+        },
+      });
+      return result;
+    } catch (error) {
+      const key = Object.keys(err.fields);
+      const value = Object.values(err.fields);
+      throw new CustomError(409, value[0], `${key[0]} not found`);
+    }
+  },
 };
