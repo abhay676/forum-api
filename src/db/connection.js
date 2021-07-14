@@ -40,6 +40,9 @@ db.channel.hasMany(db.question, {
 db.user.hasMany(db.question, {
   onDelete: 'cascade',
 });
+db.user.hasMany(db.answer, {
+  onDelete: 'cascade',
+});
 db.user.hasMany(db.reply, {
   onDelete: 'cascade',
 });
@@ -57,6 +60,7 @@ db.question.hasMany(db.reply, {
   onDelete: 'cascade',
 });
 // Answer Association
+db.answer.belongsTo(db.user);
 db.answer.belongsTo(db.question);
 db.answer.hasMany(db.reply, {
   onDelete: 'cascade',
