@@ -4,7 +4,7 @@ const NavBar = () => {
   return (
     <div
       style={{
-        backgroundColor: '#F8F9FA',
+        backgroundColor: '#ffff',
         position: 'fixed',
         top: 0,
         width: '100%',
