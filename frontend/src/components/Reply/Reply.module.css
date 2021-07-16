@@ -1,0 +1,11 @@
+.wrapper {
+  margin-top: 2px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.userInfo {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}

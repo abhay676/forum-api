@@ -1,0 +1,61 @@
+.wrapper {
+  padding: 22px;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.userInfo {
+  margin-top: 18px;
+  display: flex;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+.answer_accepted {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  margin-top: 28px;
+  font-size: 18px;
+  word-spacing: 1px;
+}
+
+.tags {
+  margin-top: 5px;
+  color: #256bd0;
+}
+
+.tags:hover {
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.like {
+  display: flex;
+}
+
+.like:hover {
+  cursor: pointer;
+}
+
+.report {
+  display: inline-block;
+}
+
+.totalAns {
+  margin-top: 18px;
+  font-weight: 500;
+}
