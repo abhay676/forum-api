@@ -16,6 +16,10 @@
   text-align: left;
 }
 
+.heading:hover {
+  cursor: pointer;
+}
+
 .question_info_wrapper {
   display: flex;
   justify-content: space-between;

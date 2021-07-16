@@ -1,13 +1,18 @@
 import { useState } from 'react';
+import {Link, useHistory} from 'react-router-dom'
 import Avatar from 'react-avatar';
 import { Button } from 'react-bootstrap';
 import styles from './Questions.module.css';
 
 const Question = () => {
+  let history = useHistory()
   const [bookmark, setBookmark] = useState(false);
+  const handleRedirect = () => {
+    history.push('/t')
+  }
   return (
     <div className={`container ${styles.wrapper}`}>
-      <div className={styles.heading}>How to restart the computer</div>
+      <div className={styles.heading} onClick={() => handleRedirect()}>How to restart the computer</div>
       <div className={styles.question_info_wrapper}>
         <div className={styles.question_info}>
           <div className={styles.avatar}>
@@ -53,7 +58,7 @@ const Question = () => {
             {bookmark ? 'bookmark' : 'bookmark_border'}
           </span>
         </div>
-        <Button variant="light">Reply</Button>{' '}
+        <Button variant="light"><Link to="/q">Reply</Link></Button>{' '}
       </div>
     </div>
   );
