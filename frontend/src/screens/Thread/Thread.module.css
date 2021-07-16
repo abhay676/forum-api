@@ -1,0 +1,15 @@
+.wrapper {
+  margin-top: 70px;
+  background-color: #fff;
+  padding-left: 15%;
+  padding-right: 15%;
+  width: 100vw;
+  height: 100vh;
+}
+
+.answer_count {
+  padding-left: 22px;
+  padding-right: 22px;
+  display: flex;
+  justify-content: space-between;
+}
