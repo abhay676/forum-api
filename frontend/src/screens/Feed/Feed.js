@@ -1,4 +1,4 @@
-import Question from '../components/Questions/Question';
+import Question from '../../components/Questions/Question';
 const Feed = () => {
   return (
     <div>
