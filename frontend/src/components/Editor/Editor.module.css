@@ -1,0 +1,9 @@
+.editor {
+  border: 1px solid black;
+  cursor: text;
+  min-height: 400px;
+  max-height: 500px;
+  overflow: auto;
+  padding: 22px;
+  font-size: 18px;
+}
