@@ -39,6 +39,13 @@ const NavBar = () => {
             </Form>
           </Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <Link to="/qc" className="btn btn-primary">
+              Ask Question
+            </Link>
+          </Nav.Link>
+        </Nav.Item>
       </Nav>
     </div>
   );
