@@ -1,0 +1,11 @@
+.wrapper {
+  margin-top: 6%;
+  background-color: #fff;
+  border-radius: 22px;
+  width: 50%;
+  padding: 14px;
+  position: absolute;
+  left: 24%;
+  top: 10%;
+  height: 57%;
+}
