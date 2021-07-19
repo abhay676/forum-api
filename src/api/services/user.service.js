@@ -59,4 +59,16 @@ export const userService = {
       return error;
     }
   },
+  async findUserByEmail({email}) {
+    try {
+      const user = await db.user.findOne({
+        where: {
+          email,
+        },
+      });
+      return user;
+    } catch (error) {
+      return error;
+    }
+  },
 };
