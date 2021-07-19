@@ -1,4 +1,4 @@
-import { WELCOME_MAIL } from './queueMessages.js';
+import { WELCOME_MAIL, LOGIN_MAIL } from './queueMessages.js';
 export const generateQueueMessage = (type, sendTo, subject, data) => {
   let message = {
     To: sendTo,
@@ -10,7 +10,14 @@ export const generateQueueMessage = (type, sendTo, subject, data) => {
       let name = `${data.name}`;
       message['name'] = name;
       return message;
+    case LOGIN_MAIL:
+      let { otp, ip, userAgent, userName } = data;
+      message['OTP'] = otp;
+      message['IP'] = ip;
+      message['userAgent'] = userAgent;
+      message['userName'] = userName;
+      return message;
     default:
-      break;
+      return message;
   }
 };

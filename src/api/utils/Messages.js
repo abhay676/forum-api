@@ -4,6 +4,8 @@
 export const USER_CREATED = 'user created successfully';
 export const USER_CREATED_ERROR = 'error occur, while creating a user';
 export const USER = 'user fetched successfully';
+export const LOGIN = 'OTP has been send to the email';
+export const LOGIN_ERROR = 'error occur, while login';
 // ----------------------------
 //! Questions messages
 // -----------------------------
