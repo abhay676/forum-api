@@ -4,6 +4,7 @@ import questionModel from '../api/models/question.model.js';
 import userModel from '../api/models/user.model.js';
 import answerModel from '../api/models/answer.model.js';
 import replyModel from '../api/models/replies.model.js';
+import OTPModel from '../api/models/otp.model.js';
 import { environment } from '../config/environment.js';
 const { DataTypes } = sequelizeRoot;
 const db = {};
@@ -31,6 +32,7 @@ db.question = questionModel(sequelize, DataTypes);
 db.user = userModel(sequelize, DataTypes);
 db.answer = answerModel(sequelize, DataTypes);
 db.reply = replyModel(sequelize, DataTypes);
+db.otp = OTPModel(sequelize, DataTypes);
 
 // Channel Associations
 db.channel.hasMany(db.question, {
@@ -44,6 +46,9 @@ db.user.hasMany(db.answer, {
   onDelete: 'cascade',
 });
 db.user.hasMany(db.reply, {
+  onDelete: 'cascade',
+});
+db.user.hasMany(db.otp, {
   onDelete: 'cascade',
 });
 // Question Association
