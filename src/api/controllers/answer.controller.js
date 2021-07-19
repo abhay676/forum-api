@@ -1,7 +1,6 @@
 import { validationResult } from 'express-validator';
 import { answerService } from '../services/answer.service.js';
 import { replyService } from '../services/reply.service.js';
-import { emailTemplate, sendMail } from '../utils/nodemailer.js';
 import { sendResponse } from '../utils/Response.js';
 import {
   NEW_ANSWER,
@@ -45,18 +44,9 @@ export const addReply = async (req, res, next) => {
     }
     const result = await replyService.addReply(req.body);
     const reply = await replyService.getReplyDetail(result.ID);
-     // generate mail HTML
-    const HTML = await emailTemplate('reply.ejs', {
-       type: 'answer',
-       shareURL: reply.answer.question.shareURL,
-       userName: reply.user.name,
-       trimText:
-         reply.reply.length > 30 ? `${reply.reply.substr(0, 30)}` : reply.reply,
-       isTrim: reply.reply.length > 30 ? true : false,
-     });
-     // send mail
-     await sendMail(reply.user.email, 'Someone reply | FORUM', HTML);
-     return sendResponse(res, 200, NEW_REPLY, result, null);
+    // generate mail HTML
+
+    return sendResponse(res, 200, NEW_REPLY, result, null);
   } catch (error) {
     console.log(error);
     next(error);
@@ -86,13 +76,13 @@ export const deleteAnswer = async (req, res, next) => {
 
 export const deleteReply = async (req, res, next) => {
   try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return sendResponse(res, 400, DELETE_REPLY_ERROR, null, errors.array());
-      }
-    const result = await replyService.deleteReply(req.body)
-    return sendResponse(res, 200, DELETE_REPLY, result, null)
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 400, DELETE_REPLY_ERROR, null, errors.array());
+    }
+    const result = await replyService.deleteReply(req.body);
+    return sendResponse(res, 200, DELETE_REPLY, result, null);
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};

@@ -2,7 +2,6 @@ import { validationResult } from 'express-validator';
 import { sendResponse } from '../utils/Response.js';
 import { questionService } from '../services/question.service.js';
 import { replyService } from '../services/reply.service.js';
-import { emailTemplate, sendMail } from '../utils/nodemailer.js';
 import {
   NEW_QUESTION_ERROR,
   NEW_QUESTION,
@@ -59,16 +58,6 @@ export const addReply = async (req, res, next) => {
     const result = await replyService.addReply(req.body);
     const reply = await replyService.getReplyDetail(result.ID);
     // generate mail HTML
-    const HTML = await emailTemplate('reply.ejs', {
-      type: 'question',
-      shareURL: reply.question.shareURL,
-      userName: reply.user.name,
-      trimText:
-        reply.reply.length > 30 ? `${reply.reply.substr(0, 30)}` : reply.reply,
-      isTrim: reply.reply.length > 30 ? true : false,
-    });
-    // send mail
-    await sendMail(reply.user.email, 'Someone reply | FORUM', HTML);
     return sendResponse(res, 200, NEW_REPLY, result, null);
   } catch (error) {
     next(error);
