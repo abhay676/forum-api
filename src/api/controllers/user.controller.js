@@ -3,7 +3,9 @@ import { validationResult } from 'express-validator';
 import { userService } from '../services/user.service.js';
 import { sendResponse } from '../utils/Response.js';
 import { USER_CREATED, USER_CREATED_ERROR, USER } from '../utils/Messages.js';
-
+import { connection } from '../utils/queue.js';
+import { generateQueueMessage } from '../utils/generateQueueMsg.js';
+import { WELCOME_MAIL, WELCOME_MAIL_SUBJECT } from '../utils/queueMessages.js';
 export const signUp = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -16,6 +18,16 @@ export const signUp = async (req, res, next) => {
       userAgent: req.useragent.source,
     };
     const result = await userService.signUp(body);
+    // generate queue message
+    const message = generateQueueMessage(
+      WELCOME_MAIL,
+      result.email,
+      WELCOME_MAIL_SUBJECT,
+      result
+    );
+    // connect to queue
+    const channel = await connection(JSON.stringify(message));
+    if (!channel) console.log('ERROR: not able to send message');
     return sendResponse(res, 201, USER_CREATED, result, null);
   } catch (error) {
     error.statusCode = 409;

@@ -13,9 +13,11 @@ export const environment = {
   MAIL_SERVICE: process.env.MAIL_SERVICE,
   MAIL_USER: process.env.MAIL_USER,
   MAIL_PWD: process.env.MAIL_PWD,
+  QUEUE_URL: process.env.QUEUE_URL,
+  QUEUE_NAME: process.env.QUEUE_NAME,
   ACTIVE: '1',
   INACTIVE: '0',
   DELETED: '2',
   TYPE_QUESTION: '0',
-  TYPE_ANSWER: '1'
+  TYPE_ANSWER: '1',
 };
