@@ -1,4 +1,6 @@
 .btn {
+  display: flex;
   margin-top: 18px;
   text-align: center;
+  justify-content: space-between;
 }

@@ -11,11 +11,14 @@ const QuestionForm = () => {
       >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Heading</Form.Label>
-          <Form.Control type="text" />
+          <Form.Control type="text" autoComplete={false} autoCorrect />
         </Form.Group>
         <Form.Label>Description</Form.Label>
         <Editor />
         <div className={styles.btn}>
+          <Button variant="outline-danger" type="submit">
+            Cancel
+          </Button>
           <Button variant="primary" type="submit">
             Submit
           </Button>
