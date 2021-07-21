@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
+import { verifyToken } from '../api/middlewares/auth.js';
 import {
   signUp,
   user,
@@ -33,7 +34,7 @@ userRouter.post(
   verifyOTP
 );
 // GET -> user detail
-userRouter.get('/u', user);
+userRouter.get('/u', verifyToken, user);
 
 // GET -> user dashboard
 userRouter.get('/u/main', userDashboard);

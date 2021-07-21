@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import db from '../../db/connection.js';
 import { CustomError } from '../utils/CustomError.js';
 import { environment } from '../../config/environment.js';
@@ -12,6 +13,32 @@ export const userService = {
       throw new CustomError(409, value[0], `${key[0]} already exists`);
     }
   },
+  async generateUserToken(ID, userAgent, IP) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const token = await jwt.sign(
+          {
+            userID: ID,
+            userAgent: userAgent,
+          },
+          environment.JWT_SECRET,
+          {
+            expiresIn: environment.JWT_SECRET_EXPIRE_IN,
+          }
+        );
+        // update token
+        db.user.findOne({ where: { ID } }).then((user) => {
+          resolve(
+            user.update({
+              activeToken: token,
+            })
+          );
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
   async userDetails(ID) {
     try {
       const result = await db.user.findOne({
@@ -20,11 +47,12 @@ export const userService = {
         },
         include: [{ model: db.question }, { model: db.answer }],
       });
+      if (!result) {
+        throw new Error('User not found');
+      }
       return result;
     } catch (error) {
-      const key = Object.keys(err.fields);
-      const value = Object.values(err.fields);
-      throw new CustomError(409, value[0], `${key[0]} not found`);
+      throw new CustomError(404, error.message, error.message);
     }
   },
   async dashboard() {
@@ -59,7 +87,7 @@ export const userService = {
       return error;
     }
   },
-  async findUserByEmail({email}) {
+  async findUserByEmail({ email }) {
     try {
       const user = await db.user.findOne({
         where: {

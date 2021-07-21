@@ -20,6 +20,10 @@ const User = (sequelize, DataTypes) => {
           isEmail: true,
         },
       },
+      activeToken: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       image: {
         type: DataTypes.STRING,
         allowNull: true,

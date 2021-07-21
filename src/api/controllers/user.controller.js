@@ -71,7 +71,6 @@ export const login = async (req, res, next) => {
       );
       // connect to queue
       const channel = await connection(JSON.stringify(message));
-      if (!channel) console.log('ERROR: not able to send message');
     }
     return sendResponse(res, 200, LOGIN, null, null);
   } catch (error) {
@@ -88,7 +87,14 @@ export const verifyOTP = async (req, res, next) => {
     }
     const [result, userID] = await OTPService.verifyOTP(req.body.code);
     if (result) {
+      // generate JWT token for cookie and session
+      await userService.generateUserToken(
+        userID,
+        req.useragent.source,
+        ip.address()
+      );
       const user = await userService.userDetails(userID);
+      // add token
       return sendResponse(res, 200, 'Success', user, null);
     }
   } catch (error) {
