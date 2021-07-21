@@ -17,7 +17,7 @@ export const app = express();
   app.use(router);
   // route-handler
   app.all('*', (req, res, next) => {
-    const origin = ip.address();
+    const origin = req.originalUrl;
     const err = new Error(`Can't find ${req.originalUrl}`);
     err.status = false;
     err.statusCode = 404;
@@ -28,7 +28,7 @@ export const app = express();
   app.use((err, req, res, next) => {
     let errors = [],
       errObj = {};
-    const origin = ip.address();
+    const origin = req.originalUrl;
     errObj.message = err.message;
     errObj.value = err.value;
     errObj.location = err.location || 'APP_INTERNAL';
